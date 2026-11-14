@@ -177,7 +177,7 @@ function apply(l){
   const t = T[l];
   document.documentElement.lang = l; document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
   document.querySelectorAll("[data-t]").forEach(e => { const v = t[e.dataset.t]; if (v != null) e.innerHTML = v; });
-  document.getElementById("badge").src = "https://tools.applemarketingtools.com/api/badges/download-on-the-app-store/black/" + t.badge;
+  const b = document.getElementById("badge"); if (b && !b.src) b.src = "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
   document.getElementById("lang").value = l;
   try { localStorage.setItem("fk_lang", l); } catch(e) {}
 }
