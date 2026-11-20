@@ -30,6 +30,7 @@ h1{font-size:clamp(28px,5vw,46px);line-height:1.1;margin:0 0 12px;letter-spacing
 .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .cta img{height:54px;display:block}
 .btn{display:inline-block;background:#000;color:#fff;border-radius:12px;padding:12px 20px;font-weight:700;text-decoration:none}
+.cta img.play{height:80px;margin:-13px -8px}
 .soon{font-size:14px;padding:10px 14px;border:2px dashed var(--ink);border-radius:12px}
 .price{margin-top:14px;font-size:14px}
 .phones{display:flex;gap:12px;justify-content:center}
@@ -73,7 +74,7 @@ footer a{margin-inline-end:14px}
         <p class="sub" data-t="sub"></p>
         <div class="cta">
           <a id="appstore" href="https://apps.apple.com/app/id6834111364"><img id="badge" alt="Download on the App Store" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'btn',textContent:' App Store'}))"></a>
-          <span class="soon" data-t="android"></span>
+          <a id="play" href="https://play.google.com/store/apps/details?id=com.dogukanguler.fahrklar"><img id="playbadge" class="play" alt="Get it on Google Play"></a>
         </div>
         <p class="price" data-t="price"></p>
       </div>
@@ -178,10 +179,12 @@ function apply(l){
   document.documentElement.lang = l; document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
   document.querySelectorAll("[data-t]").forEach(e => { const v = t[e.dataset.t]; if (v != null) e.innerHTML = v; });
   const b = document.getElementById("badge"); if (b && !b.src) b.src = "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
+  const pb = document.getElementById("playbadge"); if (pb) pb.src = "https://play.google.com/intl/en_us/badges/static/images/badges/" + l + "_badge_web_generic.png";
   document.getElementById("lang").value = l;
   try { localStorage.setItem("fk_lang", l); } catch(e) {}
 }
 document.getElementById("appstore").href = storeUrl();
+document.getElementById("play").href = "https://play.google.com/store/apps/details?id=com.dogukanguler.fahrklar&referrer=" + encodeURIComponent("utm_source=landing&utm_medium=" + campaign + "&utm_campaign=" + campaign);
 document.getElementById("lang").addEventListener("change", e => apply(e.target.value));
 apply(pick());
 </script>
